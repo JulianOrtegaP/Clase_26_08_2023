@@ -1,0 +1,16 @@
+import sqlite3
+conexion = sqlite3.connect("personas.db")
+print(conexion)
+cursor = conexion.cursor()
+#cursor.execute("DROP TABLE IF EXISTS personas")
+cursor.execute("""CREATE TABLE personas (id INTEGER PRIMARY KEY AUTOINCREMENT , dni INTEGER , barrio TEXT ,hermanos INTEGER ,hermanas INTEGER, fecha_registro TEXT)""")
+
+cursor.execute("""
+INSERT INTO personas(id,dni,barrio,hermanos,hermanas,fecha_registro)
+
+VALUES(1234,1037627844,'Laureles',1,3,'2023/8/23'),
+      (4321,10376279855,'Medellin',4,3,'2023/6/23'),
+      (5678,1038629846,'Envigado',1,3,'2022/3/23')             
+""")
+
+conexion.commit()
